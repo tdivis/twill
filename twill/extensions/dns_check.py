@@ -10,10 +10,10 @@ Functions:
   * dns_ns -- assert that a given hostname is a name server for the given name.
 """
 
-import socket
 from twill.errors import TwillAssertionError
 
 try:
+    import dns
     from dns.ipv4 import inet_aton
     from dns.name import from_text
     from dns.resolver import Resolver
@@ -105,7 +105,7 @@ def is_ip_addr(text):
     try:
         inet_aton(text)
         return True
-    except socket.error:
+    except dns.exception.SyntaxError:
         return False
 
 

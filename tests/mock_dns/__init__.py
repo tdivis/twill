@@ -3,6 +3,7 @@
 import socket
 import sys
 
+from .exception import SyntaxError
 
 mock_records = {
     'A': {
@@ -39,7 +40,7 @@ def inet_aton(text):
             raise ValueError
         return net
     except (TypeError, ValueError):
-        raise socket.error('invalid ip address %s' % text)
+        raise SyntaxError
 
 
 def from_text(text):
